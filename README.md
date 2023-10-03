@@ -55,6 +55,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ```sh
 git clone https://github.com/Oaker23/Fake-slip.git
+cd Fake-slip
 npm install
 ```
 
