@@ -66,19 +66,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Run Command 
 
 ```shell
-docker run -e "TOKEN=<discord-token>" eritislami/evobot
+
+npm run dev
+
 ```
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# You can open the website this link :
+
+ http://localhost:3000
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
