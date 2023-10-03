@@ -54,11 +54,21 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## 🚀 Getting Started
 
 ```sh
+
 git clone https://github.com/Oaker23/Fake-slip.git
+
+
+```
+
+```sh
 
 cd Fake-slip/work_space
 
+```
+```sh
+
 npm install next@latest react@latest react-dom@latest
+
 ```
 
 After installation finishes follow configuration instructions then run `npm run start` to start the bot.
@@ -67,7 +77,7 @@ After installation finishes follow configuration instructions then run `npm run 
 
 You can edit `pages.tsx` or `layout.tsx` and fill out the values:
 
-⚠️ **Note: Never commit or share your token or api keys publicly** ⚠️
+⚠️ **Note: Don't not sell it.** ⚠️
 
 ```
 export const metadata: Metadata = {
