@@ -55,8 +55,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ```sh
 git clone https://github.com/Oaker23/Fake-slip.git
-cd Fake-slip
-npm install
+
+cd Fake-slip/work_space
+
+npm install next@latest react@latest react-dom@latest
 ```
 
 After installation finishes follow configuration instructions then run `npm run start` to start the bot.
