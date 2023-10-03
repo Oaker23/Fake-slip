@@ -35,120 +35,139 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-discord.py
-==========
+![Node build](https://github.com/eritislami/evobot/actions/workflows/node.yml/badge.svg)
+![Docker build](https://github.com/eritislami/evobot/actions/workflows/docker.yml/badge.svg)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-.. image:: https://discord.com/api/guilds/336642139381301249/embed.png
-   :target: https://discord.gg/nXzj3dg
-   :alt: Discordサーバーの招待
-.. image:: https://img.shields.io/pypi/v/discord.py.svg
-   :target: https://pypi.python.org/pypi/discord.py
-   :alt: PyPIのバージョン情報
-.. image:: https://img.shields.io/pypi/pyversions/discord.py.svg
-   :target: https://pypi.python.org/pypi/discord.py
-   :alt: PyPIのサポートしているPythonのバージョン
+![logo](https://repository-images.githubusercontent.com/186841818/8aa95700-7730-11e9-84be-e80f28520325)
 
-discord.py は機能豊富かつモダンで使いやすい、非同期処理にも対応したDiscord用のAPIラッパーです。
+# 🤖 EvoBot (Discord Music Bot)
 
-主な特徴
--------------
+> EvoBot is a Discord Music Bot built with TypeScript, discord.js & uses Command Handler from [discordjs.guide](https://discordjs.guide)
 
-- ``async`` と ``await`` を使ったモダンなPythonらしいAPI。
-- 適切なレート制限処理
-- メモリと速度の両方を最適化。
+## Requirements
 
-インストール
--------------
+1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**  
+   1.1. Enable 'Message Content Intent' in Discord Developer Portal
+2. Node.js 16.11.0 or newer
 
-**Python 3.8 以降のバージョンが必須です**
+## 🚀 Getting Started
 
-完全な音声サポートなしでライブラリをインストールする場合は次のコマンドを実行してください:
+```sh
+git clone https://github.com/eritislami/evobot.git
+cd evobot
+npm install
+```
 
-.. code:: sh
+After installation finishes follow configuration instructions then run `npm run start` to start the bot.
 
-    # Linux/macOS
-    python3 -m pip install -U discord.py
+## ⚙️ Configuration
 
-    # Windows
-    py -3 -m pip install -U discord.py
+Copy or Rename `config.json.example` to `config.json` and fill out the values:
 
-音声サポートが必要なら、次のコマンドを実行しましょう:
+⚠️ **Note: Never commit or share your token or api keys publicly** ⚠️
 
-.. code:: sh
+```json
+{
+  "TOKEN": "",
+  "MAX_PLAYLIST_SIZE": 10,
+  "PRUNING": false,
+  "LOCALE": "en",
+  "DEFAULT_VOLUME": 100,
+  "STAY_TIME": 30
+}
+```
 
-    # Linux/macOS
-    python3 -m pip install -U discord.py[voice]
+## 🐬 Docker Configuration
 
-    # Windows
-    py -3 -m pip install -U discord.py[voice]
+For those who would prefer to use our [Docker container](https://hub.docker.com/repository/docker/eritislami/evobot), you may provide values from `config.json` as environment variables.
 
+```shell
+docker run -e "TOKEN=<discord-token>" eritislami/evobot
+```
 
-開発版をインストールしたいのならば、次の手順に従ってください:
+## 📝 Features & Commands
 
-.. code:: sh
+- 🎶 Play music from YouTube via url
 
-    $ git clone https://github.com/Rapptz/discord.py
-    $ cd discord.py
-    $ python3 -m pip install -U .[voice]
+`/play https://www.youtube.com/watch?v=GLvohMXgcBo`
 
+- 🔎 Play music from YouTube via search query
 
-オプションパッケージ
-~~~~~~~~~~~~~~~~~~~~~~
+`/play under the bridge red hot chili peppers`
 
-* PyNaCl (音声サポート用)
+- 🔎 Search and select music to play
 
-Linuxで音声サポートを導入するには、前述のコマンドを実行する前にお気に入りのパッケージマネージャー(例えば ``apt`` や ``dnf`` など)を使って以下のパッケージをインストールする必要があります:
+`/search Pearl Jam`
 
-* libffi-dev (システムによっては ``libffi-devel``)
-* python-dev (例えばPython 3.8用の ``python3.8-dev``)
+- 📃 Play youtube playlists via url
 
-簡単な例
---------------
+`/playlist https://www.youtube.com/watch?v=YlUKcNNmywk&list=PL5RNCwK3GIO13SR_o57bGJCEmqFAwq82c`
 
-.. code:: py
+- 🔎 Play youtube playlists via search query
 
-    import discord
+`/playlist linkin park meteora`
 
-    class MyClient(discord.Client):
-        async def on_ready(self):
-            print('Logged on as', self.user)
+- Now Playing (/np)
+- Queue system (/queue)
+- Loop / Repeat (/loop)
+- Shuffle (/shuffle)
+- Volume control (/volume)
+- Lyrics (/lyrics)
+- Pause (/pause)
+- Resume (/resume)
+- Skip (/skip)
+- Skip to song # in queue (/skipto)
+- Move a song in the queue (/move)
+- Remove song # from queue (/remove)
+- Show ping to Discord API (/ping)
+- Show bot uptime (/uptime)
+- Toggle pruning of bot messages (/pruning)
+- Help (/help)
+- Command Handler from [discordjs.guide](https://discordjs.guide/)
+- Media Controls via Reactions
 
-        async def on_message(self, message):
-            # don't respond to ourselves
-            if message.author == self.user:
-                return
+![reactions](https://i.imgur.com/0hdUX1C.png)
 
-            if message.content == 'ping':
-                await message.channel.send('pong')
+## 🌎 Locales
 
-    intents = discord.Intents.default()
-    intents.message_content = True
-    client = MyClient(intents=intents)
-    client.run('token')
+Currently available locales are:
 
-Botの例
-~~~~~~~~~~~~~
+- English (en)
+- Arabic (ar)
+- Brazilian Portuguese (pt_br)
+- Romanian (ro)
+- Czech (cs)
+- Dutch (nl)
+- French (fr)
+- German (de)
+- Greek (el)
+- Indonesian (id)
+- Italian (it)
+- Japanese (ja)
+- Korean (ko)
+- Minionese (mi)
+- Persian (fa)
+- Polish (pl)
+- Russian (ru)
+- Simplified Chinese (zh_cn)
+- Singaporean Mandarin (zh_sg)
+- Spanish (es)
+- Swedish (sv)
+- Traditional Chinese (zh_tw)
+- Thai (th)
+- Turkish (tr)
+- Ukrainian (uk)
+- Vietnamese (vi)
+- Check [Contributing](#-contributing) if you wish to help add more languages!
+- For languages please use [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) two letter format
 
-.. code:: py
+## 🤝 Contributing
 
-    import discord
-    from discord.ext import commands
-
-    intents = discord.Intents.default()
-    intents.message_content = True
-    bot = commands.Bot(command_prefix='>', intents=intents)
-
-    @bot.command()
-    async def ping(ctx):
-        await ctx.send('pong')
-
-    bot.run('token')
-
-examplesディレクトリに更に多くのサンプルがあります。
-
-リンク
-------
-
-- `ドキュメント <https://discordpy.readthedocs.io/ja/latest/index.html>`_
-- `公式Discordサーバー <https://discord.gg/nXzj3dg>`_
-- `Discord API <https://discord.gg/discord-api>`_
+1. [Fork the repository](https://github.com/eritislami/evobot/fork)
+2. Clone your fork: `git clone https://github.com/your-username/evobot.git`
+3. Create your feature branch: `git checkout -b my-new-feature`
+4. Stage changes `git add .`
+5. Commit your changes: `cz` OR `npm run commit` do not use `git commit`
+6. Push to the branch: `git push origin my-new-feature`
+7. Submit a pull request
