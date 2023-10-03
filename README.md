@@ -81,7 +81,7 @@ After installation finishes follow configuration instructions then run `npm run 
 
 You can edit `pages.tsx` or `layout.tsx` and fill out the values:
 
-⚠️ **Note: Don't not sell it.** ⚠️
+⚠️ **Note: EDIT BY XTEN** ⚠️
 
 ```
 export const metadata: Metadata = {
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
 }
 ```
 
-## 🐬 Docker Configuration
+## 🐬RUN
 
 For those who would prefer to use our [Docker container](https://hub.docker.com/repository/docker/eritislami/evobot), you may provide values from `config.json` as environment variables.
 
