@@ -10,7 +10,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ![logo](https://repository-images.githubusercontent.com/186841818/8aa95700-7730-11e9-84be-e80f28520325)
 
-# 🤖 FAKE-SLIP (EDIT BY XTEN)
+# 🤖 FAKE-SLIP (EDIT BY XTENRACK)
 
 > FAKE-SLIP created with TypeScript, discord.js and using Chorm broswer.
  from [tailwindcss](https://tailwindcss.com/docs/guides/nextjs)
@@ -50,7 +50,7 @@ After installation finishes follow configuration instructions then run `npm run 
 
 You can edit `pages.tsx` or `layout.tsx` and fill out the values:
 
-⚠️ **Note: EDIT BY XTEN** ⚠️
+⚠️ **Note: EDIT BY XTENRACK** ⚠️
 
 ```
 export const metadata: Metadata = {
