@@ -43,7 +43,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 # 🤖 FAKE-SLIP (EDIT BY XTEN)
 
-> EvoBot is a Discord Music Bot built with TypeScript, discord.js & uses Command Handler from [discordjs.guide](https://discordjs.guide)
+> FAKE-SLIP created with TypeScript, discord.js and using Chorm broswer.
+ from [tailwindcss](https://tailwindcss.com/docs/guides/nextjs)
 
 ## Requirements
 
