@@ -48,15 +48,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Requirements
 
-1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**  
-   1.1. Enable 'Message Content Intent' in Discord Developer Portal
-2. Node.js 16.11.0 or newer
+1. Node.js 16.11.0 or newer **[download](https://nodejs.org/en)*
 
+2. git for use git command **[download](https://git-scm.com/)*
 ## 🚀 Getting Started
 
 ```sh
-git clone https://github.com/eritislami/evobot.git
-cd evobot
+git clone https://github.com/Oaker23/Fake-slip.git
 npm install
 ```
 
