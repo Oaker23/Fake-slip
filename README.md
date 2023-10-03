@@ -50,7 +50,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 1. Node.js 16.11.0 or newer **[download](https://nodejs.org/en)*
 
-2. git for use git command **[download](https://git-scm.com/)*
+2. git 2.42.0 or newer for use git command **[download](https://git-scm.com/)*
 ## 🚀 Getting Started
 
 ```sh
