@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@types/file-saver": "^2.0.5",
+    "@types/qrcode": "^1.5.2",
+    "copy-image-clipboard": "^2.1.2",
+    "html-to-image": "^1.11.11"
+  }
+}
