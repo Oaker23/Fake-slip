@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "13.5.4",
-    "react": "^18",
-    "react-dom": "^18"
+    "@types/file-saver": "^2.0.5",
+    "@types/qrcode": "^1.5.2",
+    "copy-image-clipboard": "^2.1.2",
+    "html-to-image": "^1.11.11",
+    "next": "^14.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",
