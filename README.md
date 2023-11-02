@@ -29,13 +29,7 @@ Use the git command to make the file usable.
 git clone https://github.com/Oaker23/Fake-slip.git
 
 ```
-Access the file by using the cd command to go to `work_space`
 
-```sh
-
-cd Fake-slip/work_space
-
-```
 Install the module to use.
 
 ```sh
