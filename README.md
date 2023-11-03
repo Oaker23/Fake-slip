@@ -34,7 +34,15 @@ Install the module to use.
 
 ```sh
 
-npm install next@latest react@latest react-dom@latest
+install.bat
+
+```
+
+Enjoy.
+
+```sh
+
+start.bat
 
 ```
 
