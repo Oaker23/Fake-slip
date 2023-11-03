@@ -1,4 +1,3 @@
-echo off
+@echo off
 npm install next@latest react@latest react-dom@latest
-
-exit
+taskkill /F /IM cmd.exe
