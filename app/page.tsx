@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   [
     {
       bank_name: "ธ.กสิกรไทย",
-      bank_image: "https://media.discordapp.net/attachments/1088285744897986570/1158838075024212130/5fc3c42dfd7d4fbb.png"    
+      bank_image: "https://github.com/Oaker23/Fake-slip/blob/main/logo/images.png"    
     },
     {
       bank_name: "ธ.ไทยพาณิชย์",
