@@ -19,7 +19,7 @@ const Home: NextPage = () => {
     },
     {
       bank_name: "ธ.ไทยพาณิชย์",
-      bank_image: "https://media.discordapp.net/attachments/1088285744897986570/1158838074697068594/58ff478cab628905.png"
+      bank_image: "https://cdn.discordapp.com/attachments/1330771391829774393/1338905326141046905/slip_1_copy_2.png?ex=67b35fc1&is=67b20e41&hm=32a85b30cc6c79df0966b6150d2c6c0f5cb3c1257dd8f0eff1501a596eb3b50d&"
     },
     {
       bank_name: "ธ.ออมสิน",
