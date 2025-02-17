@@ -42,20 +42,20 @@ const Home: NextPage = () => {
       bank_image: "https://cdn.discordapp.com/attachments/1330771391829774393/1338917362979569686/slip_1_copy_8.png?ex=67b36af7&is=67b21977&hm=3c19bddab1319ee2318be6c1b1a5856ee6a5f4b9cecabb094b40eea09fd18555&"
     },
   ]
-  
-  
+
+
   const [saver, setSaver] = useState(false);
-  
+
   const [date, setDate] = useState("[ยังไม่ได้กรอก]");
   const [money, setMoney] = useState("1.00");
-  
+
   const [NameA, setNameA] = useState("[ยังไม่ได้กรอก]");
-  const [bankFlagA, _A] = useState("ธ.กสิกรไทย");
+  const [bankFlagA, setBankFlagA] = useState("ธ.กสิกรไทย");
   const [bankNumbA, setbankNumbA] = useState("[ยังไม่ได้กรอก]");
-  
+
   const [NameB, setNameB] = useState("[ยังไม่ได้กรอก]");
-  const [bankFlagB, setBankFlagB] = useState("[ยังไม่ได้เลือก]");
-  const [bankImageB, setBankImageB] = useState("[ยังไม่ได้เลือก]");
+  const [bankFlagB, setBankFlagB] = useState("");
+  const [bankImageB, setBankImageB] = useState<string | null>(null);
   const [bankNumbB, setbankNumbB] = useState("[ยังไม่ได้กรอก]");
 
   const [order, setOrder] = useState("[ยังไม่ได้กรอก]");
@@ -66,68 +66,62 @@ const Home: NextPage = () => {
 
   // donwload รูป
   const downloadImage = () => {
-
-    let slip = document.getElementById("slipp") as HTMLElement;
-    toJpeg(slip, {quality: qualityVal}).then((dataurl) => {
+    let slip = document.getElementById("slipp");
+    if (!slip) return;
+    toJpeg(slip, { quality: qualityVal }).then((dataurl) => {
       saveAs(dataurl, "slip.jpg");
     });
-    return;
-
-  }
+  };
+  
 
   // copy รูป
   const copyImage = () => {
-
+    let slip = document.getElementById("slipp");
+    if (!slip) return;
     setSaver(true);
-    let slip = document.getElementById("slipp") as HTMLElement;
-    toJpeg(slip, {quality: qualityVal}).then((dataurl) => {
+    toJpeg(slip, { quality: qualityVal }).then((dataurl) => {
       copyImageToClipboard(dataurl);
       setSaver(false);
     });
-    return;
-
-  }
+  };
 
   // สร้างเลขที่ทำรายการ
   const qrCodex = (text: string) => {
-
-    if (text) {
-      text = text.toLocaleUpperCase();
-      QRCode.toDataURL(text, { errorCorrectionLevel: 'H', margin: 0.1, width: 280}).then(url => {
+    if (!text.trim()) {
+      setQrCode("");
+      setOrder("[ยังไม่ได้กรอก]");
+      return;
+    }
+    text = text.toUpperCase();
+    QRCode.toDataURL(text, { errorCorrectionLevel: 'H', margin: 0.1, width: 280 })
+      .then(url => {
         setQrCode(url);
         setOrder(text);
-      });
-    }
-
-    return;
-
-  }
+      })
+      .catch(err => console.error("QR Code generation failed", err));
+  };
 
   const changeMoney = (money: string) => {
-
-    if (money.match(/^[0-9]*$/)) {
-      money = parseFloat(money).toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).replace("$","");
-      setMoney(money);
+    if (!money.trim()) {
+      setMoney("0.00");
+      return;
     }
-
-    return;
-
-  }
+    const num = parseFloat(money);
+    if (!isNaN(num)) {
+      setMoney(num.toLocaleString("th-TH", { minimumFractionDigits: 2 }));
+    } else {
+      setMoney("0.00");
+    }
+  };
 
   const sBank = (bank_name: string) => {
-
-    bankList.filter((i) => {
-      if (i.bank_name === bank_name) {
-        setBankFlagB(i.bank_name);
-        setBankImageB(i.bank_image);
-        console.log(bankImageB);
-      }
-    })
-
-  }
+    const selectedBank = bankList.find((i) => i.bank_name === bank_name);
+    if (selectedBank) {
+      setBankFlagB(selectedBank.bank_name);
+      setBankImageB(selectedBank.bank_image);
+    }
+  };
+  
 
   return (
     <div>
@@ -141,75 +135,75 @@ const Home: NextPage = () => {
       <main className="m-2 container">
         <div className="flex space-x-2">
           <div className="border-2 border-purple-500 rounded px-3 py-2 w-[34rem]">
-              <div className="text-center text-2xl">
-                ข้อมูลของสลิป
+            <div className="text-center text-2xl">
+              ข้อมูลของสลิป
+            </div>
+            <div className="mt-2">
+              <div>
+                <p className="text-lg">วันที่เวลา [ 25 ต.ค. 66 10:90 น. ]</p>
+                <input onChange={(e) => { e.target.value.length === 0 ? setDate("[ยังไม่ได้กรอก]") : setDate(e.target.value) }} placeholder="วันที่เวลา" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
               </div>
-              <div className="mt-2">
-                <div>
-                  <p className="text-lg">วันที่เวลา [ 25 ต.ค. 66 10:90 น. ]</p>
-                  <input onChange={(e) => { e.target.value.length === 0 ? setDate("[ยังไม่ได้กรอก]") : setDate(e.target.value) }} placeholder="วันที่เวลา" type="text"  className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
-                </div>
 
-                <div>
-                  <p className="text-lg">เลขที่ทำรายการกับ QrCode [ 013210138431VOR76310 ]</p>
-                  <input onChange={(e) => {qrCodex(e.target.value)}} maxLength={20} placeholder="เลขที่ทำรายการพร้อม [QrCode]" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
-                </div>
-                
-                <div>
-                  <p className="text-lg">จำนวนเงิน [ ใส่แค่เลขเดี๋ยวมันจะแปลงเลขให้เอง ]</p>
-                  <input defaultValue={"1"} onChange={(e) => { e.target.value === "1.00" ? changeMoney("[ยังไม่ได้กรอก]") : changeMoney(e.target.value) }} placeholder="จำนวนเงิน" type="number" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
-                </div>
+              <div>
+                <p className="text-lg">เลขที่ทำรายการกับ QrCode [ 013210138431VOR76310 ]</p>
+                <input onChange={(e) => { qrCodex(e.target.value) }} maxLength={20} placeholder="เลขที่ทำรายการพร้อม [QrCode]" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
               </div>
+
+              <div>
+                <p className="text-lg">จำนวนเงิน [ ใส่แค่เลขเดี๋ยวมันจะแปลงเลขให้เอง ]</p>
+                <input defaultValue={"1"} onChange={(e) => { e.target.value === "1.00" ? changeMoney("[ยังไม่ได้กรอก]") : changeMoney(e.target.value) }} placeholder="จำนวนเงิน" type="number" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
+              </div>
+            </div>
           </div>
 
           <div className="border-2 border-purple-500 rounded px-3 py-2 w-[34rem]">
             <div className="text-center text-2xl">
-                ข้อมูลของผู้โอน
+              ข้อมูลของผู้โอน
+            </div>
+            <div className="mt-2">
+              <div>
+                <p className="text-lg">ชื่อ [ นาย กสิกร บ ]</p>
+                <input onChange={(e) => { e.target.value.length === 0 ? setNameA("[ยังไม่ได้กรอก]") : setNameA(e.target.value) }} placeholder="ชื่อผู้โอน" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
               </div>
-              <div className="mt-2">
-                <div>
-                  <p className="text-lg">ชื่อ [ นาย กสิกร บ ]</p>
-                  <input onChange={(e) => { e.target.value.length === 0 ? setNameA("[ยังไม่ได้กรอก]") : setNameA(e.target.value) }} placeholder="ชื่อผู้โอน" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
-                </div>
 
-                <div>
-                  <p className="text-lg">หมายเลขธนาคาร  [ xxx-x-x2846-x ]</p>
-                  <input onChange={(e) => { e.target.value.length === 0 ? setbankNumbA("[ยังไม่ได้กรอก]") : setbankNumbA(e.target.value) }} placeholder="หมายเลขธนาคาร" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
-                </div>
+              <div>
+                <p className="text-lg">หมายเลขธนาคาร  [ xxx-x-x2846-x ]</p>
+                <input onChange={(e) => { e.target.value.length === 0 ? setbankNumbA("[ยังไม่ได้กรอก]") : setbankNumbA(e.target.value) }} placeholder="หมายเลขธนาคาร" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
               </div>
+            </div>
           </div>
 
           <div className="border-2 border-purple-500 rounded px-3 py-2 w-[34rem]">
             <div className="text-center text-2xl">
-                ข้อมูลของผู้รับ
+              ข้อมูลของผู้รับ
+            </div>
+            <div className="mt-2">
+              <div>
+                <p className="text-lg">ชื่อ [ น.ส. พิมพ์ภัทรา วิชัยกุล ]</p>
+                <input onChange={(e) => { e.target.value.length === 0 ? setNameB("[ยังไม่ได้กรอก]") : setNameB(e.target.value) }} placeholder="ชื่อผู้โอน" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
               </div>
-              <div className="mt-2">
-                <div>
-                  <p className="text-lg">ชื่อ [ น.ส. พิมพ์ภัทรา วิชัยกุล ]</p>
-                  <input onChange={(e) => { e.target.value.length === 0 ? setNameB("[ยังไม่ได้กรอก]") : setNameB(e.target.value) }} placeholder="ชื่อผู้โอน" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
-                </div>
-                <div>
-                  <p className="text-lg">รูปธนาคาร</p>
-                  <select onChange={(e) => {sBank(e.target.value)}}>
-                    <option selected>เลือกด้วยครับ</option>
-                  {bankList.map((data, index) =>
-                    <option key={index} defaultValue={data.bank_name}>
+              <div>
+                <p className="text-lg">รูปธนาคาร</p>
+                <select value={bankFlagB || ""} onChange={(e) => sBank(e.target.value)}>
+                  <option value="" disabled>เลือกด้วยครับ</option>
+                  {bankList.map((data, index) => (
+                    <option key={index} value={data.bank_name}>
                       {data.bank_name}
                     </option>
-                    )}
-                  </select>
-                </div>
-                <div>
-                  <p className="text-lg">หมายเลขธนาคาร  [ xxx-x-x7428-x ]</p>
-                  <input onChange={(e) => { e.target.value.length === 0 ? setbankNumbB("[ยังไม่ได้กรอก]") : setbankNumbB(e.target.value) }} placeholder="หมายเลขธนาคาร" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
-                </div>
+                  ))}
+                </select>
               </div>
+              <div>
+                <p className="text-lg">หมายเลขธนาคาร  [ xxx-x-x7428-x ]</p>
+                <input onChange={(e) => { e.target.value.length === 0 ? setbankNumbB("[ยังไม่ได้กรอก]") : setbankNumbB(e.target.value) }} placeholder="หมายเลขธนาคาร" type="text" className="placeholder:text-gray-500 px-2 py-1 outline-none border-2 border-yellow-400 rounded-md" />
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="mt-2 flex space-x-2">
-          <button onClick={() => {downloadImage()}} className="px-3 py-1 border-2 border-black rounded-md">Download</button>
-          <button onClick={() => {copyImage()}} className="px-3 py-1 border-2 border-black rounded-md">{ saver === true ? "Copied" : "Copy" }</button>
+          <button onClick={() => { downloadImage() }} className="px-3 py-1 border-2 border-black rounded-md">Download</button>
+          <button onClick={() => { copyImage() }} className="px-3 py-1 border-2 border-black rounded-md">{saver === true ? "Copied" : "Copy"}</button>
         </div>
       </main>
 
@@ -226,11 +220,15 @@ const Home: NextPage = () => {
 
         <div className="text-[39px]">
           <div className="logo">
-            {
-              bankFlagB !== "[ยังไม่ได้เลือก]"
-              ? <img className="absolute left-[-18px] top-[520px]" src={bankImageB} alt={bankFlagB} />
-              : <h1 className="absolute kbank_semibold font-sm text-[#545454] left-[46px] top-[548px]">ยังไม่ได้เลือก</h1>
-            }
+            {bankImageB ? (
+              <img className="absolute left-[-18px] top-[515px]" src={bankImageB} alt={bankFlagB} />
+            ) : (
+              <h1 className="absolute kbank_semibold font-sm text-[#545454] left-[46px] top-[548px]">
+                ยังไม่ได้เลือก
+              </h1>
+            )}
+
+
           </div>
           <div className="infomation absolute left-[240px] top-[548px]">
             <p className="kbank_semibold text-[#545454]">{NameB}</p>
@@ -249,7 +247,7 @@ const Home: NextPage = () => {
 
 
         <div className="absolute text-[38px] text-[#535353] right-[391px] top-[1109px]">
-          <p className="kbank_semibold">0.00 บาท</p> 
+          <p className="kbank_semibold">0.00 บาท</p>
         </div>
 
         <div className="absolute left-[674px] top-[841px]">
