@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   [
     {
       bank_name: "ธ.กสิกรไทย",
-      bank_image: "https://github.com/Oaker23/Fake-slip/blob/main/logo/images.png"    
+      bank_image: "https://cdn.discordapp.com/attachments/1330771391829774393/1338910376426868857/slip_1_copy_3.png?ex=67b36475&is=67b212f5&hm=cfa445789b21819fbfba4d9dd22ab339ff9a29a5b6435e8e8272c5965d07a4f2&"    
     },
     {
       bank_name: "ธ.ไทยพาณิชย์",
@@ -23,23 +23,23 @@ const Home: NextPage = () => {
     },
     {
       bank_name: "ธ.ออมสิน",
-      bank_image: "https://media.discordapp.net/attachments/1088285744897986570/1158838074445402214/88fc7c2b74940f5e.png"
+      bank_image: "https://cdn.discordapp.com/attachments/1330771391829774393/1338912408177082459/slip_1_copy_4.png?ex=67b36659&is=67b214d9&hm=e9b85e451d94c4fd8afa2d49bc566b4ed69582ed1e2421078eb4d9d3fdf53bdc&"
     },
     {
       bank_name: "ธ.กรุงไทย",
-      bank_image: "https://media.discordapp.net/attachments/1088285744897986570/1158838074130825387/26c190790121bc8f.png"
+      bank_image: "https://cdn.discordapp.com/attachments/1330771391829774393/1338913538839805972/slip_1_copy_5.png?ex=67b36767&is=67b215e7&hm=b3cb6290317d94e7404fe4965bbfb4eb78c3ae870249046872a5fd5858939b5c&"
     },
     {
       bank_name: "ธ.กรุงศรี",
-      bank_image: "https://media.discordapp.net/attachments/1088285744897986570/1158838073879179314/cfdcfbec26548b33.png"
+      bank_image: "https://cdn.discordapp.com/attachments/1330771391829774393/1338915870369386517/slip_1_copy_6.png?ex=67b36993&is=67b21813&hm=d28a11dc9fdd4a969477f2ec5eb861276f79785c064631cf42e1a3cdf3821635&"
     },
     {
       bank_name: "ธ.กรุงเทพ",
-      bank_image: "https://media.discordapp.net/attachments/1088285744897986570/1158838073589764177/94a706060f511415.png"
+      bank_image: "https://cdn.discordapp.com/attachments/1330771391829774393/1338916564459716648/slip_1_copy_7.png?ex=67b36a38&is=67b218b8&hm=31f35402866f887646830f1405daca9826d51933e554ceab66be5937184ca61a&"
     },
     {
       bank_name: "พร้อมเพย์",
-      bank_image: "https://media.discordapp.net/attachments/1088285744897986570/1158838073099038872/857c1d7e7a2f61ff.png"
+      bank_image: "https://cdn.discordapp.com/attachments/1330771391829774393/1338917362979569686/slip_1_copy_8.png?ex=67b36af7&is=67b21977&hm=3c19bddab1319ee2318be6c1b1a5856ee6a5f4b9cecabb094b40eea09fd18555&"
     },
   ]
   
@@ -228,7 +228,7 @@ const Home: NextPage = () => {
           <div className="logo">
             {
               bankFlagB !== "[ยังไม่ได้เลือก]"
-              ? <img className="absolute left-[46px] top-[548px]" src={bankImageB} alt={bankFlagB} />
+              ? <img className="absolute left-[-18px] top-[520px]" src={bankImageB} alt={bankFlagB} />
               : <h1 className="absolute kbank_semibold font-sm text-[#545454] left-[46px] top-[548px]">ยังไม่ได้เลือก</h1>
             }
           </div>
